@@ -1,0 +1,12 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Byte-compiled or optimized files
+*.pyo
+*.pyd
+*.pyc
+*.pye
+
+
+.DS_Store
