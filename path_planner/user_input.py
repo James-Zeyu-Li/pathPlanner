@@ -62,16 +62,6 @@ def prompt_penalty_factor():
             print("Invalid input. Please enter a valid number.")
 
 
-def display_path_info(start, end, path, distance, segment_distances):
-    """格式化显示路径信息"""
-    print(f"\nShortest path from {start} to {end}:")
-    print(f"Route: {' -> '.join(path)}")
-    print(f"Total Distance: {distance:.2f}")
-    print("Segment Distances:")
-    for seg in segment_distances:
-        print(f"  {seg[0]} -> {seg[1]}: {seg[2]:.2f}")
-
-
 def main():
     """主函数：运行路径规划程序"""
     # 加载数据并初始化规划器
@@ -98,19 +88,22 @@ def main():
             print(f"No path found between {start} and {end}.")
             return
 
-        display_path_info(start, end, path, distance, segment_distances)
+        # 打印原始返回内容
+        print("\nShortest path (raw return):")
+        print(f"path: {path}")
+        print(f"distance: {distance}")
+        print(f"segment_distances: {segment_distances}")
 
         # 提示用户输入惩罚系数并查找备用路径
         penalty_factor = prompt_penalty_factor()
         existing_paths = [(path, distance)]
         alt_result = planner.find_alternative_path_with_penalty(
-            start, end, existing_paths, penalty_factor
-        )
+            start, end, existing_paths, penalty_factor)
         if alt_result:
-            alt_path, actual_distance, alt_segment_distances = alt_result
-            print("\nAlternative Path Found:")
-            display_path_info(start, end, alt_path,
-                              actual_distance, alt_segment_distances)
+            print("\nAlternative Path Found (raw return):")
+            print(f"path: {alt_result[0]}")
+            print(f"distance: {alt_result[1]}")
+            print(f"segment_distances: {alt_result[2]}")
         else:
             print("\nNo alternative path available.")
 

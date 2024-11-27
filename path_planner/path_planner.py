@@ -84,10 +84,6 @@ class PathPlanner:
         if end not in graph:
             raise ValueError(f"End city {end} not found in graph")
 
-        # debug print-----------------------------------------
-        print(f"Finding shortest path from {start} to {end}...")
-        # debug print-----------------------------------------
-
         queue = [(0, start)]  # (distance, node) start from 0 distance
         # All distances are infinity at the beginning
         distances = {node: float('inf') for node in graph}
@@ -95,11 +91,6 @@ class PathPlanner:
         previous_nodes = {node: None for node in graph}
         distances[start] = 0
         visited = set()
-
-        # debug print-----------------------------------------
-        print(f"Initial distances: {distances}")
-        print(f"Initial queue: {queue}")
-        # debug print-----------------------------------------
 
         while queue:  # while queue is not empty
             # get the node with the smallest distance
@@ -168,10 +159,6 @@ class PathPlanner:
         """
         if not isinstance(penalty_factor, (int, float)) or penalty_factor <= 0:
             raise ValueError("Penalty factor must be a positive number")
-
-        # debug print-----------------------------------------
-        print(f"Original graph: {self.graph}")
-        print(f"Existing paths to penalize: {existing_paths}")
 
         modified_graph = {
             node: neighbors.copy()
