@@ -116,19 +116,18 @@ class PathPlanner:
 
                 # if a shorter path is found, update the distance
                 if distance < distances[neighbor]:
-                    print(
-                        f"Updating distance for {neighbor}: "
-                        f"{distances[neighbor]} -> {distance}")
                     distances[neighbor] = distance
                     heapq.heappush(queue, (distance, neighbor))
                     previous_nodes[neighbor] = current_node
 
             if current_node == end:  # if we reach the end node, path found
                 path = self._reconstruct_path(previous_nodes, start, end)
-                # debug print-----------------------------------------
-                print(f"Path found: {path}, Total distance: {distances[end]}")
-                # debug print-----------------------------------------
-                return path, distances[end]  # return the path and distance
+                segment_distances = [
+                    (path[i], path[i + 1], graph[path[i]][path[i + 1]])
+                    for i in range(len(path) - 1)
+                ]
+                total_distance = distances[end]
+                return path, total_distance, segment_distances
 
         return None, float('inf')  # No path found
 
@@ -197,12 +196,16 @@ class PathPlanner:
         Find shortest path between start and end with penalties
         for existing paths
         """
+        if not isinstance(penalty_factor, (int, float)) or penalty_factor < 2 or penalty_factor > 10:
+            raise ValueError("Penalty factor must be between 2 and 10")
+
         modified_graph = self.create_penalized_graph(
             existing_paths, penalty_factor)
 
         # Find shortest path in penalized graph
-        new_path, new_distance = self.find_shortest_path(
-            start, end, graph=modified_graph)
+        new_path, penalized_distance, segment_distances = \
+            self.find_shortest_path(
+                start, end, graph=modified_graph)
 
         # Check path validity
         if not new_path or any(new_path == path[0] for path in existing_paths):
@@ -211,4 +214,10 @@ class PathPlanner:
         # Calculate actual distance using original graph
         distance_without_penalty = self.get_path_distance(new_path)
 
-        return new_path, new_distance, distance_without_penalty
+        segment_distances = [
+            (new_path[i], new_path[i + 1],
+             self.graph[new_path[i]][new_path[i + 1]])
+            for i in range(len(new_path) - 1)
+        ]
+
+        return new_path, distance_without_penalty, segment_distances
