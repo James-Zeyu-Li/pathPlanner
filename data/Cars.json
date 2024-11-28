@@ -1,0 +1,50 @@
+
+{
+    "Model3LR": {
+        "make": "Tesla",
+        "model": "Model 3 Long Range",
+        "year": 2024,
+        "battery_size": 82.5,
+        "current_battery_level": 100,
+        "charging_curve": {
+            "0": 150,
+            "10": 150,
+            "20": 140,
+            "30": 130,
+            "40": 120,
+            "50": 110,
+            "60": 100,
+            "70": 90,
+            "80": 80,
+            "90": 70,
+            "100": 0
+        },
+        "max_range": 600,
+        "SoC": 100,
+        "range_per_kw": 7.14
+    },
+    "Semi": {
+        "make": "Tesla",
+        "model": "Semi Truck",
+        "year": 2024,
+        "battery_size": 900,
+        "current_battery_level": 100,
+        "charging_curve": {
+            "0": 150,
+            "10": 150,
+            "20": 140,
+            "30": 130,
+            "40": 120,
+            "50": 110,
+            "60": 100,
+            "70": 90,
+            "80": 80,
+            "90": 70,
+            "100": 0
+        },
+        "max_range": 800,
+        "SoC": 100,
+        "range_per_kw": 0.8
+    }
+}
+
