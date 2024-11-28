@@ -5,10 +5,11 @@
 import json
 from collections import defaultdict
 
+
 def load_car(filename, car_type):
     """
     Loads car parameters from a JSON file.
-    
+
     Args:
         filename (str): The path to the JSON file containing car information.
         car_type (str): The type of the car to load.
@@ -18,16 +19,17 @@ def load_car(filename, car_type):
     """
     with open(filename, 'r') as file:
         cars_data = json.load(file)
-    
+
     if car_type not in cars_data:
         raise ValueError(f"Car type '{car_type}' not found in {filename}")
-    
+
     return cars_data[car_type]
+
 
 def load_path_planner(segment_distances):
     """
     Loads segment distances and converts them to charging station data for optimization.
-    
+
     Args:
         segment_distances (list): A list of tuples representing segments of the path.
                                   Each tuple contains (start, end, distance).
@@ -45,6 +47,7 @@ def load_path_planner(segment_distances):
     # Add the final destination without distance
     charging_stations.append({'name': segment_distances[-1][1]})
     return charging_stations
+
 
 def optimize_charging_strategy(charging_stations, vehicle_params, charging_curve):
     """
@@ -68,12 +71,15 @@ def optimize_charging_strategy(charging_stations, vehicle_params, charging_curve
     # Print segment distances for debugging
     print("Segment Distances:")
     for segment in charging_stations[:-1]:
-        print(f"From {segment['name']} to next station, Distance: {segment['distance_to_next']} km")
+        print(
+            f"From {segment['name']} to next station, Distance: {segment['distance_to_next']} km")
 
     # Reconstruct the optimal charging strategy
-    optimal_strategy, total_time = reconstruct_optimal_path(dp_table, charging_stations)
+    optimal_strategy, total_time = reconstruct_optimal_path(
+        dp_table, charging_stations)
 
     return optimal_strategy, total_time
+
 
 def initialize_dp_table(num_stations, soc_levels):
     """
@@ -82,14 +88,17 @@ def initialize_dp_table(num_stations, soc_levels):
     dp_table = [{} for _ in range(num_stations)]
     return dp_table
 
+
 def calculate_energy_needed(distance, energy_consumption_rate, battery_capacity):
     """
     Calculates the energy needed (in SoC percentage) to travel a certain distance.
     """
-    energy_needed = (distance / energy_consumption_rate) / battery_capacity * 100  # As a percentage
+    energy_needed = (distance / energy_consumption_rate) / \
+        battery_capacity * 100  # As a percentage
     # Round to nearest multiple of 10%
     energy_needed = round(energy_needed / 10) * 10
     return energy_needed
+
 
 def calculate_charging_time(soc_start, soc_end, battery_capacity, charging_curve):
     """
@@ -107,13 +116,15 @@ def calculate_charging_time(soc_start, soc_end, battery_capacity, charging_curve
         charging_time += time_increment
     return charging_time
 
+
 def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, soc_levels, charging_curve):
     """
     Performs the dynamic programming iterations to fill the DP table.
     """
     battery_capacity = vehicle_params['battery_size']
     energy_consumption_rate = vehicle_params['range_per_kw']
-    driving_speed = vehicle_params.get('driving_speed', 100)  # Default to 100 km/h
+    driving_speed = vehicle_params.get(
+        'driving_speed', 100)  # Default to 100 km/h
 
     num_stations = len(charging_stations)
 
@@ -121,7 +132,8 @@ def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, s
         current_station = charging_stations[i]
         next_station = charging_stations[i + 1]
         distance = current_station['distance_to_next']
-        energy_needed = calculate_energy_needed(distance, energy_consumption_rate, battery_capacity)
+        energy_needed = calculate_energy_needed(
+            distance, energy_consumption_rate, battery_capacity)
         travel_time = distance / driving_speed
 
         updated = False  # Flag to track if any state is updated in this stage
@@ -131,7 +143,8 @@ def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, s
 
             # Possible charging decisions (in 10% increments)
             max_charge = 100 - soc_current
-            charge_options = [c for c in range(0, int(max_charge) + 1, 10)]  # In 10% increments
+            charge_options = [c for c in range(
+                0, int(max_charge) + 1, 10)]  # In 10% increments
 
             for charge in charge_options:
                 soc_charged = soc_current + charge
@@ -141,11 +154,14 @@ def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, s
                     continue  # Not enough energy, skip this charging decision
 
                 soc_next = soc_charged - energy_needed
-                soc_next = int(round(soc_next / 10) * 10)  # Round to nearest multiple of 10%
-                soc_next = max(0, min(100, soc_next))  # Ensure soc_next is within 0% to 100%
+                # Round to nearest multiple of 10%
+                soc_next = int(round(soc_next / 10) * 10)
+                # Ensure soc_next is within 0% to 100%
+                soc_next = max(0, min(100, soc_next))
 
                 # Calculate charging time
-                t_charge = calculate_charging_time(soc_current, soc_charged, battery_capacity, charging_curve)
+                t_charge = calculate_charging_time(
+                    soc_current, soc_charged, battery_capacity, charging_curve)
 
                 # Total time for this path
                 total_time = cumulative_time + t_charge + travel_time
@@ -166,16 +182,19 @@ def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, s
             if soc_current >= energy_needed:
                 soc_next = soc_current - energy_needed
                 travel_time = distance / driving_speed
-                total_time = dp_table[i].get(100, {'time': 0})['time'] + travel_time
+                total_time = dp_table[i].get(100, {'time': 0})[
+                    'time'] + travel_time
 
                 dp_table[i + 1][int(soc_next)] = {
                     'time': total_time,
                     'prev_state': (i, soc_current),
                     'charge': 0  # Assume no extra charging needed as we started fully charged
                 }
-                print(f"Warning: No feasible states for stage {i + 1}, forcing full charge at {current_station['name']}.")
+                print(
+                    f"Warning: No feasible states for stage {i + 1}, forcing full charge at {current_station['name']}.")
 
     return dp_table
+
 
 def reconstruct_optimal_path(dp_table, charging_stations):
     """
@@ -191,9 +210,9 @@ def reconstruct_optimal_path(dp_table, charging_stations):
             min_time = data['time']
             optimal_final_soc = soc
 
-
     if optimal_final_soc is None:
-        raise ValueError("No feasible path found to the final stage. Please check the route distances and vehicle parameters.")
+        raise ValueError(
+            "No feasible path found to the final stage. Please check the route distances and vehicle parameters.")
 
     # Backtrack to reconstruct the path
     optimal_strategy = []
@@ -208,13 +227,14 @@ def reconstruct_optimal_path(dp_table, charging_stations):
                 if data['time'] < min_time:
                     min_time = data['time']
                     current_soc = soc
-            print(f"Warning: Expected SoC {current_soc} not found at stage {current_stage_index}, using the minimum time state instead.")
+            print(
+                f"Warning: Expected SoC {current_soc} not found at stage {current_stage_index}, using the minimum time state instead.")
 
         state_info = dp_table[current_stage_index].get(current_soc)
-        
 
         if not state_info:
-            raise ValueError(f"Failed to find a feasible state for stage {current_stage_index} with SoC {current_soc}.")
+            raise ValueError(
+                f"Failed to find a feasible state for stage {current_stage_index} with SoC {current_soc}.")
 
         prev_stage_index, prev_soc = state_info['prev_state']
         charge_amount = state_info['charge']
@@ -229,13 +249,15 @@ def reconstruct_optimal_path(dp_table, charging_stations):
     total_time = dp_table[final_stage_index][optimal_final_soc]['time']
     return optimal_strategy, total_time
 
+
 def traditional_strategy(charging_stations, vehicle_params, charging_curve):
     """
     Implements the traditional charging strategy: drive until the battery is depleted, then recharge fully.
     """
     battery_capacity = vehicle_params['battery_size']
     energy_consumption_rate = vehicle_params['range_per_kw']
-    driving_speed = vehicle_params.get('driving_speed', 100)  # Default to 100 km/h
+    driving_speed = vehicle_params.get(
+        'driving_speed', 100)  # Default to 100 km/h
     current_soc = vehicle_params['current_battery_level']
     total_time = 0
     strategy = []
@@ -243,18 +265,22 @@ def traditional_strategy(charging_stations, vehicle_params, charging_curve):
     for i in range(len(charging_stations) - 1):
         current_station = charging_stations[i]
         distance = current_station['distance_to_next']
-        energy_needed = calculate_energy_needed(distance, energy_consumption_rate, battery_capacity)
+        energy_needed = calculate_energy_needed(
+            distance, energy_consumption_rate, battery_capacity)
         travel_time = distance / driving_speed
 
         if current_soc < energy_needed:
             # Need to recharge fully
             charge_needed = 100 - current_soc
-            charging_time = calculate_charging_time(current_soc, 100, battery_capacity, charging_curve)
+            charging_time = calculate_charging_time(
+                current_soc, 100, battery_capacity, charging_curve)
             total_time += charging_time
             strategy.append({
                 'station': current_station['name'],
-                'charge_amount': int(charge_needed),  # Display charge amount as an integer
-                'departure_soc': int(100)  # Display departure SoC as an integer
+                # Display charge amount as an integer
+                'charge_amount': int(charge_needed),
+                # Display departure SoC as an integer
+                'departure_soc': int(100)
             })
             current_soc = 100  # After charging
 

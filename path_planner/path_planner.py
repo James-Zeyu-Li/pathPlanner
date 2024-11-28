@@ -183,7 +183,8 @@ class PathPlanner:
         Find shortest path between start and end with penalties
         for existing paths
         """
-        if not isinstance(penalty_factor, (int, float)) or penalty_factor < 2 or penalty_factor > 10:
+        if not isinstance(penalty_factor, (int, float)) or penalty_factor < 2\
+                or penalty_factor > 10:
             raise ValueError("Penalty factor must be between 2 and 10")
 
         modified_graph = self.create_penalized_graph(
