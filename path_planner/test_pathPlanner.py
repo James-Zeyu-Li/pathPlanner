@@ -4,7 +4,7 @@ from path_planner import PathPlanner
 
 
 # 文件路径配置
-DATA_DIR = Path(__file__).resolve().parent / "data"
+DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 NODES_FILE = DATA_DIR / "nodes.json"
 GRAPH_FILE = DATA_DIR / "graph.json"
 
