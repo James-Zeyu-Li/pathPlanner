@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Path Planner</h1>
+  <form id="planner-form">
+    <label for="start-city">Start City:</label>
+    <input type="text" id="start-city" name="start_city" placeholder="e.g., City1" required><br>
+
+    <label for="end-city">End City:</label>
+    <input type="text" id="end-city" name="end_city" placeholder="e.g., Station1" required><br>
+
+    <label for="car-type">Car Type:</label>
+    <input type="text" id="car-type" name="car_type" placeholder="e.g., Model3LR" required><br>
+
+    <button type="submit">Calculate Route</button>
+  </form>
+
+  <h2>Results</h2>
+  <div id="results"></div>
+  <p id="error"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
