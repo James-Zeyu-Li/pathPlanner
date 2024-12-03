@@ -1,16 +1,20 @@
 import json
+import networkx as nx
+import matplotlib.pyplot as plt
 from pathlib import Path
 from path_planner import PathPlanner
 
 
 # 文件路径配置
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 NODES_FILE = DATA_DIR / "nodes.json"
 GRAPH_FILE = DATA_DIR / "graph.json"
 
 
 def load_graph_data():
-    """从文件加载节点和图数据"""
+    """
+    Load nodes and graph data from JSON files.
+    """
     try:
         with open(NODES_FILE) as f:
             nodes = json.load(f)
@@ -25,91 +29,134 @@ def load_graph_data():
         return None, None
 
 
-def prompt_city_selection(planner, prompt):
-    """提示用户选择一个城市"""
-    cities = [node for node, details in planner.nodes.items()
-              if details.get("type") == "city"]
-    if not cities:
-        print("No cities available in the graph.")
-        return None
+def visualize_path(nodes, graph, path, alt_path=None, save_path=None):
+    """
+    Visualize the graph with the shortest path and alternative path highlighted.
+    Node positions and labels are based on predefined locations from nodes.
+    """
+    G = nx.Graph()
 
-    print(f"\nAvailable Cities:")
-    for idx, city in enumerate(cities, start=1):
-        print(f"{idx}. {city}")
+    # Add all nodes and edges from the graph
+    for node, edges in graph.items():
+        for neighbor, weight in edges.items():
+            G.add_edge(node, neighbor, weight=weight)
 
-    while True:
-        try:
-            selection = int(input(prompt).strip())
-            if 1 <= selection <= len(cities):
-                return cities[selection - 1]
-            else:
-                print(f"Please select a number between 1 and {len(cities)}.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
+    # Extract edges for shortest and alternative paths
+    path_edges = list(zip(path[:-1], path[1:])) if path else []
+    alt_edges = list(zip(alt_path[:-1], alt_path[1:])) if alt_path else []
+
+    # Collect all nodes involved in shortest and alternative paths
+    highlighted_nodes = set()
+    if path:
+        highlighted_nodes.update(path)
+    if alt_path:
+        highlighted_nodes.update(alt_path)
+
+    # Use actual positions from nodes' "location"
+    pos = {node: (details["location"][0], details["location"][1])
+           for node, details in nodes.items()}
+
+    # Define node colors: highlighted nodes keep their type color, others are grey
+    colors = [
+        'red' if nodes[node]["type"] == "city" and node in highlighted_nodes
+        else 'blue' if nodes[node]["type"] == "station" and node in highlighted_nodes
+        else 'lightgrey'
+        for node in G.nodes
+    ]
+
+    # Draw the graph with all edges in light grey for context
+    plt.figure(figsize=(12, 8))
+    nx.draw(G, pos, with_labels=True, node_color=colors,
+            node_size=700, edge_color="lightgrey", font_size=10)
+
+    # Highlight shortest path edges
+    if path_edges:
+        nx.draw_networkx_edges(G, pos, edgelist=path_edges,
+                               edge_color="green", width=2, label="Shortest Path")
+
+    # Highlight alternative path edges
+    if alt_edges:
+        nx.draw_networkx_edges(G, pos, edgelist=alt_edges, edge_color="orange",
+                               width=2, style="dashed", label="Alternative Path")
+
+    # Add edge weights as labels
+    edge_labels = {(u, v): f"{d:.2f}" for u, v, d in G.edges(data="weight")}
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=8)
+
+    # Add legend and save the figure
+    plt.legend()
+    if save_path:
+        plt.savefig(save_path, format="png", dpi=300)
+        print(f"Path visualization saved to {save_path}")
+    plt.show()
 
 
-def prompt_penalty_factor():
-    """提示用户输入一个惩罚系数"""
-    while True:
-        try:
-            penalty_factor = float(
-                input("Enter penalty factor (e.g., 2.0): ").strip())
-            if penalty_factor > 0:
-                return penalty_factor
-            else:
-                print("Penalty factor must be greater than 0.")
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
-
-
-def main():
-    """主函数：运行路径规划程序"""
-    # 加载数据并初始化规划器
+def test_path_planner():
+    """
+    Test function to validate PathPlanner behavior.
+    """
     nodes, graph = load_graph_data()
     if not nodes or not graph:
+        print("Failed to load graph data.")
         return
 
     planner = PathPlanner(nodes, graph)
 
-    # 提示用户选择起点和终点城市
-    start = prompt_city_selection(planner, "Select start city (number): ")
-    if not start:
+    # Test: Define start and end cities for pathfinding
+    start, end = "City1", "City3"
+
+    # Ensure start and end are valid
+    if start not in planner.nodes or end not in planner.nodes:
+        print(f"Invalid cities: {start} or {end} not found in the graph.")
         return
 
-    end = prompt_city_selection(planner, "Select destination city (number): ")
-    if not end:
-        return
-
-    # 查找最短路径
     try:
+        # Find the shortest path
         path, distance, segment_distances = planner.find_shortest_path(
             start, end)
         if not path:
             print(f"No path found between {start} and {end}.")
             return
 
-        # 打印原始返回内容
-        print("\nShortest path (raw return):")
-        print(f"path: {path}")
-        print(f"distance: {distance}")
-        print(f"segment_distances: {segment_distances}")
+        # Print shortest path
+        print("\n====================== Shortest Path ======================")
+        print(f"From: {start} -> To: {end}")
+        print(f"Route: {' -> '.join(path)}")
+        print(f"\nTotal Distance: {distance:.2f}\n")
+        print("Segment Distances:")
+        for segment in segment_distances:
+            print(f"  {segment[0]} -> {segment[1]}: {segment[2]:.2f}")
+        print("==========================================================")
 
-        # 提示用户输入惩罚系数并查找备用路径
-        penalty_factor = prompt_penalty_factor()
+        # Visualize shortest path
+        visualize_path(nodes, graph, path, save_path="shortest_path_test.png")
+
+        # Test: Find alternative path
+        penalty_factor = 2.5
         existing_paths = [(path, distance)]
         alt_result = planner.find_alternative_path_with_penalty(
             start, end, existing_paths, penalty_factor)
+
         if alt_result:
-            print("\nAlternative Path Found (raw return):")
-            print(f"path: {alt_result[0]}")
-            print(f"distance: {alt_result[1]}")
-            print(f"segment_distances: {alt_result[2]}")
+            # Print alternative path
+            print("\n=================== Alternative Path ====================")
+            print(f"From: {start} -> To: {end}")
+            print(f"Route: {' -> '.join(alt_result[0])}")
+            print(f"\nTotal Distance: {alt_result[1]:.2f}\n")
+            print("Segment Distances:")
+            for segment in alt_result[2]:
+                print(f"  {segment[0]} -> {segment[1]}: {segment[2]:.2f}")
+            print("==========================================================")
+
+            # Visualize alternative path
+            visualize_path(nodes, graph, path, alt_path=alt_result[0],
+                           save_path="alternative_path_test.png")
         else:
             print("\nNo alternative path available.")
 
     except ValueError as e:
-        print(f"Error: {e}")
+        print(f"Error during pathfinding: {e}")
 
 
 if __name__ == "__main__":
-    main()
+    test_path_planner()

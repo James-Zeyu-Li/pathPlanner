@@ -12,8 +12,10 @@ def calculate_distance(loc1, loc2):
     )
 
 
-# 创建指定拓扑结构的图
 def create_custom_structure():
+    """
+    Create a custom graph structure with cities and charging stations.
+    """
     nodes = {
         "City1": {"type": "city", "location": (0, 200)},
         "City2": {"type": "city", "location": (350, 1000)},
@@ -23,7 +25,7 @@ def create_custom_structure():
     }
     graph = {}
 
-    # 添加城市之间的连接
+    # Define connections between cities
     connections = {
         "City1": ["City2", "City4", "City5"],
         "City2": ["City1", "City3", "City4", "City5"],
@@ -32,29 +34,29 @@ def create_custom_structure():
         "City5": ["City1", "City2", "City3", "City4"],
     }
 
-    # 为每对城市之间生成充电站
-    processed_paths = set()  # 存储已处理路径
-    station_id = 1  # 初始化充电站 ID
+    # Generate charging stations between cities
+    processed_paths = set()
+    station_id = 1
 
     for city, neighbors in connections.items():
         for neighbor in neighbors:
-            # 检查是否已经处理过该路径
+            # Skip processed paths (undirected graph)
             if (city, neighbor) in processed_paths or \
                (neighbor, city) in processed_paths:
                 continue
 
-            # 标记路径为已处理
             processed_paths.add((city, neighbor))
 
-            # 计算城市之间的距离
             city_loc = nodes[city]["location"]
             neighbor_loc = nodes[neighbor]["location"]
 
-            # 确保充电站位于主路上
-            num_stations = random.randint(1, 8)
+            # Create charging stations along the path
+            num_stations = random.randint(5, 8)
             station_nodes = []
-            for _ in range(num_stations):
-                t = random.uniform(0.1, 1)  # 插值比例
+            t_values = sorted(random.uniform(0.1, 1)
+                              for _ in range(num_stations))
+
+            for t in t_values:
                 station_location = (
                     round(city_loc[0] + t *
                           (neighbor_loc[0] - city_loc[0]), 2),
@@ -66,7 +68,7 @@ def create_custom_structure():
                 station_nodes.append(station_name)
                 station_id += 1
 
-            # 连接充电站到路径上的城市和其他充电桩
+            # Connect charging stations and cities
             prev_node = city
             for station in station_nodes:
                 dist = calculate_distance(
@@ -75,7 +77,7 @@ def create_custom_structure():
                 graph.setdefault(station, {})[prev_node] = dist
                 prev_node = station
 
-            # 最后一个充电桩连接到目标城市
+            # Connect last station to the destination city
             final_dist = calculate_distance(
                 nodes[prev_node]["location"], neighbor_loc)
             graph.setdefault(prev_node, {})[neighbor] = final_dist
@@ -83,85 +85,84 @@ def create_custom_structure():
 
     return nodes, graph
 
-# 可视化图
-
 
 def visualize_custom_graph(graph, nodes, save_path=None):
+    """
+    Visualize the graph with cities and charging stations.
+    """
     G = nx.Graph()
 
-    # 添加节点和边
+    # Add nodes and edges to the graph
     for node, edges in graph.items():
         for neighbor, distance in edges.items():
             G.add_edge(node, neighbor, weight=distance)
 
-    # 设置节点颜色
-    colors = []
-    labels = {}
-    for node in G.nodes:
-        if nodes[node]["type"] == "city":
-            colors.append("red")  # 城市为红色
-            labels[node] = node
-        else:
-            colors.append("blue")  # 充电站为蓝色
-            labels[node] = node  # 标记充电站编号
-
-    # 使用实际坐标进行布局
+    # Set node positions and colors
     pos = {node: nodes[node]["location"] for node in G.nodes}
-# 获取无向图中的边权重
-    edge_labels = {(u, v): d for u, v, d in G.edges(data="weight") if u < v}
+    colors = ['red' if nodes[node]["type"] ==
+              "city" else 'blue' for node in G.nodes]
+    labels = {node: node for node in G.nodes}
 
-    # 绘制图
+    # Collect edge labels for distances
+    edge_labels = {(u, v): f"{d:.2f}" for u, v, d in G.edges(data="weight")}
+
+    # Draw the graph
+    plt.figure(figsize=(12, 8))
     nx.draw(G, pos, with_labels=True, labels=labels,
             node_size=700, node_color=colors)
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
-    # 保存图像
+    # Save the graph image
     if save_path:
-        # 确保目录存在
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         plt.savefig(save_path, format="png", dpi=300)
+        print(f"Graph saved to {save_path}")
 
-    # 显示图像
     plt.show()
 
 
-# 保存数据到 JSON 文件
 def save_to_file(data, filepath):
+    """
+    Save data to a JSON file.
+    """
     try:
-        # 确保目录存在
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         with open(filepath, 'w') as file:
             json.dump(data, file, indent=4)
     except Exception as e:
-        print(f"保存数据到文件失败: {e}")
+        print(f"Failed to save data to {filepath}: {e}")
 
 
-# 从 JSON 文件加载数据
 def load_from_file(filepath):
+    """
+    Load data from a JSON file.
+    """
     try:
         with open(filepath, 'r') as file:
             return json.load(file)
     except Exception as e:
-        print(f"加载数据失败: {e}")
+        print(f"Failed to load data from {filepath}: {e}")
         return None
 
 
 if __name__ == "__main__":
-    # 创建自定义拓扑结构
+    # Create the custom graph structure
     nodes, graph = create_custom_structure()
 
-    # 定义文件路径
-    nodes_file = "data/nodes.json"
-    graph_file = "data/graph.json"
-    image_file = "data/graph_visualization.png"  # 图片保存路径
+    # Define file paths
+    nodes_file = "backend/data/nodes.json"
+    graph_file = "backend/data/graph.json"
+    image_file = "backend/data/graph_visualization.png"
 
-    # 保存到 JSON 文件
+    # Save data to JSON files
     save_to_file(nodes, nodes_file)
     save_to_file(graph, graph_file)
 
-    # 可视化并保存图像
+    # Visualize and save the graph
     visualize_custom_graph(graph, nodes, save_path=image_file)
 
-    # 验证数据保存后是否能正确加载
+    # Verify data loading
     loaded_nodes = load_from_file(nodes_file)
     loaded_graph = load_from_file(graph_file)
+    print("\nLoaded Nodes:", loaded_nodes)
+    print("\nLoaded Graph:", loaded_graph)

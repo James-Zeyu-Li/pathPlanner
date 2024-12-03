@@ -1,222 +1,266 @@
 {
     "City1": {
-        "Station1": 208.97,
-        "Station7": 904.33,
-        "Station14": 268.65
+        "Station1": 132.4,
+        "Station8": 104.02,
+        "Station15": 81.89
     },
     "Station1": {
-        "City1": 208.97,
-        "Station2": 396.25
+        "City1": 132.4,
+        "Station2": 41.55
     },
     "Station2": {
-        "Station1": 396.25,
-        "Station3": 208.89
+        "Station1": 41.55,
+        "Station3": 62.33
     },
     "Station3": {
-        "Station2": 208.89,
-        "Station4": 588.44
+        "Station2": 62.33,
+        "Station4": 149.6
     },
     "Station4": {
-        "Station3": 588.44,
-        "Station5": 195.38
+        "Station3": 149.6,
+        "Station5": 110.76
     },
     "Station5": {
-        "Station4": 195.38,
-        "Station6": 306.12
+        "Station4": 110.76,
+        "Station6": 50.83
     },
     "Station6": {
-        "Station5": 306.12,
-        "City2": 758.28
-    },
-    "City2": {
-        "Station6": 758.28,
-        "Station20": 201.9,
-        "Station21": 809.33,
-        "Station29": 920.12
+        "Station5": 50.83,
+        "Station7": 187.89
     },
     "Station7": {
-        "City1": 904.33,
-        "Station8": 88.49
+        "Station6": 187.89,
+        "City2": 137.85
+    },
+    "City2": {
+        "Station7": 137.85,
+        "Station20": 133.1,
+        "Station25": 263.66,
+        "Station31": 113.03
     },
     "Station8": {
-        "Station7": 88.49,
-        "Station9": 143.05
+        "City1": 104.02,
+        "Station9": 393.77
     },
     "Station9": {
-        "Station8": 143.05,
-        "Station10": 245.98
+        "Station8": 393.77,
+        "Station10": 8.32
     },
     "Station10": {
-        "Station9": 245.98,
-        "Station11": 38.17
+        "Station9": 8.32,
+        "Station11": 99.03
     },
     "Station11": {
-        "Station10": 38.17,
-        "Station12": 113.58
+        "Station10": 99.03,
+        "Station12": 110.2
     },
     "Station12": {
-        "Station11": 113.58,
-        "Station13": 34.86
+        "Station11": 110.2,
+        "Station13": 113.2
     },
     "Station13": {
-        "Station12": 34.86,
-        "City4": 584.07
-    },
-    "City4": {
-        "Station13": 584.07,
-        "Station28": 938.54,
-        "Station39": 563.79,
-        "Station45": 245.2
+        "Station12": 113.2,
+        "Station14": 1.53
     },
     "Station14": {
-        "City1": 268.65,
-        "Station15": 99.03
+        "Station13": 1.53,
+        "City4": 171.17
+    },
+    "City4": {
+        "Station14": 171.17,
+        "Station30": 9.57,
+        "Station45": 91.04,
+        "Station54": 95.26
     },
     "Station15": {
-        "Station14": 99.03,
-        "Station16": 189.54
+        "City1": 81.89,
+        "Station16": 49.4
     },
     "Station16": {
-        "Station15": 189.54,
-        "Station17": 61.33
+        "Station15": 49.4,
+        "Station17": 16.88
     },
     "Station17": {
-        "Station16": 61.33,
-        "Station18": 33.34
+        "Station16": 16.88,
+        "Station18": 44.95
     },
     "Station18": {
-        "Station17": 33.34,
-        "Station19": 9.08
+        "Station17": 44.95,
+        "Station19": 136.43
     },
     "Station19": {
-        "Station18": 9.08,
-        "City5": 113.61
+        "Station18": 136.43,
+        "City5": 255.68
     },
     "City5": {
-        "Station19": 113.61,
-        "Station33": 684.87,
-        "Station44": 72.04,
-        "Station48": 43.52
+        "Station19": 255.68,
+        "Station37": 6.57,
+        "Station53": 66.58,
+        "Station59": 105.56
     },
     "Station20": {
-        "City2": 201.9,
-        "City3": 406.38
-    },
-    "City3": {
-        "Station20": 406.38,
-        "Station34": 255.18,
-        "Station40": 556.06
+        "City2": 133.1,
+        "Station21": 24.78
     },
     "Station21": {
-        "City2": 809.33,
-        "Station22": 529.45
+        "Station20": 24.78,
+        "Station22": 42.96
     },
     "Station22": {
-        "Station21": 529.45,
-        "Station23": 611.46
+        "Station21": 42.96,
+        "Station23": 97.81
     },
     "Station23": {
-        "Station22": 611.46,
-        "Station24": 32.58
+        "Station22": 97.81,
+        "Station24": 39.74
     },
     "Station24": {
-        "Station23": 32.58,
-        "Station25": 286.17
+        "Station23": 39.74,
+        "City3": 269.89
+    },
+    "City3": {
+        "Station24": 269.89,
+        "Station38": 173.26,
+        "Station46": 404.14
     },
     "Station25": {
-        "Station24": 286.17,
-        "Station26": 121.65
+        "City2": 263.66,
+        "Station26": 8.2
     },
     "Station26": {
-        "Station25": 121.65,
-        "Station27": 317.2
+        "Station25": 8.2,
+        "Station27": 456.47
     },
     "Station27": {
-        "Station26": 317.2,
-        "Station28": 636.66
+        "Station26": 456.47,
+        "Station28": 99.68
     },
     "Station28": {
-        "Station27": 636.66,
-        "City4": 938.54
+        "Station27": 99.68,
+        "Station29": 190.5
     },
     "Station29": {
-        "City2": 920.12,
-        "Station30": 274.36
+        "Station28": 190.5,
+        "Station30": 41.98
     },
     "Station30": {
-        "Station29": 274.36,
-        "Station31": 194.58
+        "Station29": 41.98,
+        "City4": 9.57
     },
     "Station31": {
-        "Station30": 194.58,
-        "Station32": 103.54
+        "City2": 113.03,
+        "Station32": 128.9
     },
     "Station32": {
-        "Station31": 103.54,
-        "Station33": 401.86
+        "Station31": 128.9,
+        "Station33": 97.67
     },
     "Station33": {
-        "Station32": 401.86,
-        "City5": 684.87
+        "Station32": 97.67,
+        "Station34": 282.53
     },
     "Station34": {
-        "City3": 255.18,
-        "Station35": 119.56
+        "Station33": 282.53,
+        "Station35": 107.63
     },
     "Station35": {
-        "Station34": 119.56,
-        "Station36": 23.69
+        "Station34": 107.63,
+        "Station36": 116.64
     },
     "Station36": {
-        "Station35": 23.69,
-        "Station37": 484.43
+        "Station35": 116.64,
+        "Station37": 166.84
     },
     "Station37": {
-        "Station36": 484.43,
-        "Station38": 487.75
+        "Station36": 166.84,
+        "City5": 6.57
     },
     "Station38": {
-        "Station37": 487.75,
-        "Station39": 31.88
+        "City3": 173.26,
+        "Station39": 50.01
     },
     "Station39": {
-        "Station38": 31.88,
-        "City4": 563.79
+        "Station38": 50.01,
+        "Station40": 13.23
     },
     "Station40": {
-        "City3": 556.06,
-        "Station41": 350.8
+        "Station39": 13.23,
+        "Station41": 163.12
     },
     "Station41": {
-        "Station40": 350.8,
-        "Station42": 315.45
+        "Station40": 163.12,
+        "Station42": 23.74
     },
     "Station42": {
-        "Station41": 315.45,
-        "Station43": 388.99
+        "Station41": 23.74,
+        "Station43": 56.45
     },
     "Station43": {
-        "Station42": 388.99,
-        "Station44": 710.42
+        "Station42": 56.45,
+        "Station44": 37.51
     },
     "Station44": {
-        "Station43": 710.42,
-        "City5": 72.04
+        "Station43": 37.51,
+        "Station45": 143.3
     },
     "Station45": {
-        "City4": 245.2,
-        "Station46": 56.6
+        "Station44": 143.3,
+        "City4": 91.04
     },
     "Station46": {
-        "Station45": 56.6,
-        "Station47": 45.66
+        "City3": 404.14,
+        "Station47": 53.11
     },
     "Station47": {
-        "Station46": 45.66,
-        "Station48": 196.55
+        "Station46": 53.11,
+        "Station48": 46.45
     },
     "Station48": {
-        "Station47": 196.55,
-        "City5": 43.52
+        "Station47": 46.45,
+        "Station49": 78.21
+    },
+    "Station49": {
+        "Station48": 78.21,
+        "Station50": 34.9
+    },
+    "Station50": {
+        "Station49": 34.9,
+        "Station51": 26.86
+    },
+    "Station51": {
+        "Station50": 26.86,
+        "Station52": 97.5
+    },
+    "Station52": {
+        "Station51": 97.5,
+        "Station53": 177.14
+    },
+    "Station53": {
+        "Station52": 177.14,
+        "City5": 66.58
+    },
+    "Station54": {
+        "City4": 95.26,
+        "Station55": 82.2
+    },
+    "Station55": {
+        "Station54": 82.2,
+        "Station56": 57.46
+    },
+    "Station56": {
+        "Station55": 57.46,
+        "Station57": 2.38
+    },
+    "Station57": {
+        "Station56": 2.38,
+        "Station58": 57.72
+    },
+    "Station58": {
+        "Station57": 57.72,
+        "Station59": 73.77
+    },
+    "Station59": {
+        "Station58": 73.77,
+        "City5": 105.56
     }
 }
