@@ -1,450 +1,331 @@
 {
-    "City1": {
-        "type": "city",
+    "Vancouver": {
+        "type": "City",
         "location": [
-            0,
-            200
+            49.25966,
+            -123.03106
         ]
     },
-    "City2": {
-        "type": "city",
+    "Prince George": {
+        "type": "City",
         "location": [
-            350,
-            1000
+            53.8886,
+            -122.77
         ]
     },
-    "City3": {
-        "type": "city",
+    "Chilliwack": {
+        "type": "City",
         "location": [
-            950,
-            900
+            49.141693,
+            -121.963915
         ]
     },
-    "City4": {
-        "type": "city",
+    "Merritt": {
+        "type": "City",
         "location": [
-            1000,
-            150
+            50.124852,
+            -120.748818
         ]
     },
-    "City5": {
-        "type": "city",
+    "Banff": {
+        "type": "City",
         "location": [
-            550,
-            0
+            51.18780768,
+            -115.5887461
         ]
     },
-    "Station1": {
+    "Clearwater": {
+        "type": "City",
+        "location": [
+            51.6506614,
+            -120.039499
+        ]
+    },
+    "Jasper": {
+        "type": "City",
+        "location": [
+            52.880669,
+            -118.078275
+        ]
+    },
+    "Edson": {
+        "type": "City",
+        "location": [
+            53.58557,
+            -116.420913
+        ]
+    },
+    "Edson Station": {
         "type": "station",
         "location": [
-            53.07,
-            321.3
+            53.58557,
+            -116.420913
         ]
     },
-    "Station2": {
-        "type": "station",
+    "Edmonton": {
+        "type": "City",
         "location": [
-            69.72,
-            359.37
+            53.569275,
+            -113.522805
         ]
     },
-    "Station3": {
+    "100 Mile House": {
         "type": "station",
         "location": [
-            94.7,
-            416.47
+            51.6414924957355,
+            -121.297813356253
         ]
     },
-    "Station4": {
+    "Abbotsford": {
         "type": "station",
         "location": [
-            154.67,
-            553.52
+            49.058774,
+            -122.37941
         ]
     },
-    "Station5": {
+    "Aidrie": {
         "type": "station",
         "location": [
-            199.06,
-            655.0
+            51.295673,
+            -113.997998
         ]
     },
-    "Station6": {
+    "Barriere": {
         "type": "station",
         "location": [
-            219.44,
-            701.57
+            51.178419,
+            -120.129056
         ]
     },
-    "Station7": {
+    "Blue River": {
         "type": "station",
         "location": [
-            294.75,
-            873.71
+            52.109652,
+            -119.310203
         ]
     },
-    "Station8": {
+    "Bowden": {
         "type": "station",
         "location": [
-            103.89,
-            194.81
+            51.934188,
+            -114.026185
         ]
     },
-    "Station9": {
+    "Cache Creek": {
         "type": "station",
         "location": [
-            497.17,
-            175.14
+            50.810825,
+            -121.325135
         ]
     },
-    "Station10": {
-        "type": "station",
+    "Calgary": {
+        "type": "City",
         "location": [
-            505.48,
-            174.73
+            51.1528,
+            -113.996
         ]
     },
-    "Station11": {
+    "Canmore": {
         "type": "station",
         "location": [
-            604.39,
-            169.78
+            51.1036455,
+            -115.363011
         ]
     },
-    "Station12": {
+    "Cariboo A": {
         "type": "station",
         "location": [
-            714.45,
-            164.28
+            52.710543755583,
+            -122.45771517899
         ]
     },
-    "Station13": {
+    "Clinton": {
         "type": "station",
         "location": [
-            827.51,
-            158.62
+            51.091893,
+            -121.586585
         ]
     },
-    "Station14": {
+    "Condor": {
         "type": "station",
         "location": [
-            829.04,
-            158.55
+            52.329538,
+            -114.551992
         ]
     },
-    "Station15": {
+    "Crossfield": {
         "type": "station",
         "location": [
-            76.96,
-            172.01
+            51.413432884788,
+            -114.001000299377
         ]
     },
-    "Station16": {
+    "Dome Creek": {
         "type": "station",
         "location": [
-            123.39,
-            155.13
+            53.726072,
+            -121.1434
         ]
     },
-    "Station17": {
+    "Edmonton International Airport": {
         "type": "station",
         "location": [
-            139.25,
-            149.36
+            53.303274,
+            -113.555407
         ]
     },
-    "Station18": {
+    "Fraser Valley A": {
         "type": "station",
         "location": [
-            181.49,
-            134.0
+            49.8602003090135,
+            -121.440151520238
         ]
     },
-    "Station19": {
+    "Fraser Valley B": {
         "type": "station",
         "location": [
-            309.71,
-            87.38
+            49.651679,
+            -121.001113
         ]
     },
-    "Station20": {
+    "Fraser Valley C": {
         "type": "station",
         "location": [
-            481.29,
-            978.12
+            50.541679,
+            -118.585113
         ]
     },
-    "Station21": {
+    "Hixon": {
         "type": "station",
         "location": [
-            505.73,
-            974.05
+            53.4197,
+            -122.585
         ]
     },
-    "Station22": {
+    "Hope": {
         "type": "station",
         "location": [
-            548.1,
-            966.98
+            49.363935,
+            -121.478798
         ]
     },
-    "Station23": {
+    "Improvement Disctrict No. 9": {
         "type": "station",
         "location": [
-            644.58,
-            950.9
+            51.9737176177911,
+            -116.746419282613
         ]
     },
-    "Station24": {
+    "Innisfail": {
         "type": "station",
         "location": [
-            683.78,
-            944.37
+            52.030276,
+            -113.928805
         ]
     },
-    "Station25": {
+    "Kananaskis": {
         "type": "station",
         "location": [
-            510.16,
-            790.56
+            51.098717,
+            -115.016371
         ]
     },
-    "Station26": {
+    "Lake Louise": {
         "type": "station",
         "location": [
-            515.14,
-            784.05
+            51.426479,
+            -116.175944
         ]
     },
-    "Station27": {
+    "Leduc": {
         "type": "station",
         "location": [
-            792.42,
-            421.45
+            53.280251,
+            -113.545447
         ]
     },
-    "Station28": {
+    "Little Fort": {
         "type": "station",
         "location": [
-            852.97,
-            342.27
+            51.4277642587847,
+            -120.202746433777
         ]
     },
-    "Station29": {
+    "Lytton": {
         "type": "station",
         "location": [
-            968.69,
-            190.95
+            50.1794676,
+            -121.5717557
         ]
     },
-    "Station30": {
+    "McBride": {
         "type": "station",
         "location": [
-            994.19,
-            157.6
+            53.305057,
+            -120.160885
         ]
     },
-    "Station31": {
+    "Olds": {
         "type": "station",
         "location": [
-            372.17,
-            889.17
+            51.79439,
+            -114.03754
         ]
     },
-    "Station32": {
+    "PRINCE GEORGE": {
         "type": "station",
         "location": [
-            397.45,
-            762.77
+            53.88607,
+            -122.76898
         ]
     },
-    "Station33": {
+    "Red Deer": {
         "type": "station",
         "location": [
-            416.6,
-            667.0
+            52.2852381097637,
+            -113.850648399481
         ]
     },
-    "Station34": {
+    "Red Deer County": {
         "type": "station",
         "location": [
-            472.01,
-            389.96
+            52.216416,
+            -113.815797
         ]
     },
-    "Station35": {
+    "Rocky Mountain House": {
         "type": "station",
         "location": [
-            493.12,
-            284.42
+            52.377098,
+            -114.918778
         ]
     },
-    "Station36": {
+    "Tete Jaune Cache": {
         "type": "station",
         "location": [
-            515.99,
-            170.04
+            52.980227,
+            -119.320209
         ]
     },
-    "Station37": {
+    "Thompson-Nicola B": {
         "type": "station",
         "location": [
-            548.71,
-            6.44
+            51.684951,
+            -119.42093
         ]
     },
-    "Station38": {
+    "Valemount": {
         "type": "station",
         "location": [
-            961.53,
-            727.12
+            52.83166702,
+            -119.2784726
         ]
     },
-    "Station39": {
+    "Williams Lake": {
         "type": "station",
         "location": [
-            964.85,
-            677.22
-        ]
-    },
-    "Station40": {
-        "type": "station",
-        "location": [
-            965.73,
-            664.02
-        ]
-    },
-    "Station41": {
-        "type": "station",
-        "location": [
-            976.58,
-            501.26
-        ]
-    },
-    "Station42": {
-        "type": "station",
-        "location": [
-            978.16,
-            477.57
-        ]
-    },
-    "Station43": {
-        "type": "station",
-        "location": [
-            981.92,
-            421.25
-        ]
-    },
-    "Station44": {
-        "type": "station",
-        "location": [
-            984.41,
-            383.82
-        ]
-    },
-    "Station45": {
-        "type": "station",
-        "location": [
-            993.94,
-            240.84
-        ]
-    },
-    "Station46": {
-        "type": "station",
-        "location": [
-            785.86,
-            530.69
-        ]
-    },
-    "Station47": {
-        "type": "station",
-        "location": [
-            764.29,
-            482.16
-        ]
-    },
-    "Station48": {
-        "type": "station",
-        "location": [
-            745.43,
-            439.71
-        ]
-    },
-    "Station49": {
-        "type": "station",
-        "location": [
-            713.66,
-            368.24
-        ]
-    },
-    "Station50": {
-        "type": "station",
-        "location": [
-            699.49,
-            336.35
-        ]
-    },
-    "Station51": {
-        "type": "station",
-        "location": [
-            688.58,
-            311.81
-        ]
-    },
-    "Station52": {
-        "type": "station",
-        "location": [
-            648.98,
-            222.71
-        ]
-    },
-    "Station53": {
-        "type": "station",
-        "location": [
-            577.04,
-            60.84
-        ]
-    },
-    "Station54": {
-        "type": "station",
-        "location": [
-            909.63,
-            119.88
-        ]
-    },
-    "Station55": {
-        "type": "station",
-        "location": [
-            831.65,
-            93.88
-        ]
-    },
-    "Station56": {
-        "type": "station",
-        "location": [
-            777.14,
-            75.71
-        ]
-    },
-    "Station57": {
-        "type": "station",
-        "location": [
-            774.88,
-            74.96
-        ]
-    },
-    "Station58": {
-        "type": "station",
-        "location": [
-            720.12,
-            56.71
-        ]
-    },
-    "Station59": {
-        "type": "station",
-        "location": [
-            650.14,
-            33.38
+            52.12274052,
+            -122.09485448
         ]
     }
 }

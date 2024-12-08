@@ -32,8 +32,8 @@ def main():
     planner = PathPlanner(nodes=nodes, graph=graph)
 
     # Define start and end nodes for the path
-    start_city = "City1"
-    end_city = "City3"
+    start_city = "Vancouver"
+    end_city = "Edmonton"
 
     # Check if the nodes exist in the graph
     if start_city not in planner.graph or end_city not in planner.graph:

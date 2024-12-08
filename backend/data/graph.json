@@ -1,266 +1,188 @@
 {
-    "City1": {
-        "Station1": 132.4,
-        "Station8": 104.02,
-        "Station15": 81.89
+    "Vancouver": {
+        "Abbotsford": 55.0,
+        "Fraser Valley A": 137.15,
+        "Cache Creek": 185.97
     },
-    "Station1": {
-        "City1": 132.4,
-        "Station2": 41.55
+    "Abbotsford": {
+        "Vancouver": 55.0,
+        "Chilliwack": 34.17
     },
-    "Station2": {
-        "Station1": 41.55,
-        "Station3": 62.33
+    "Chilliwack": {
+        "Abbotsford": 34.17,
+        "Hope": 43.04
     },
-    "Station3": {
-        "Station2": 62.33,
-        "Station4": 149.6
+    "Hope": {
+        "Chilliwack": 43.04,
+        "Fraser Valley B": 44.98
     },
-    "Station4": {
-        "Station3": 149.6,
-        "Station5": 110.76
+    "Fraser Valley B": {
+        "Hope": 44.98,
+        "Fraser Valley C": 207.67
     },
-    "Station5": {
-        "Station4": 110.76,
-        "Station6": 50.83
+    "Fraser Valley C": {
+        "Fraser Valley B": 207.67,
+        "Lake Louise": 207.0
     },
-    "Station6": {
-        "Station5": 50.83,
-        "Station7": 187.89
+    "Lake Louise": {
+        "Fraser Valley C": 207.0,
+        "Banff": 51.12,
+        "Thompson-Nicola B": 262.56
     },
-    "Station7": {
-        "Station6": 187.89,
-        "City2": 137.85
+    "Banff": {
+        "Lake Louise": 51.12,
+        "Canmore": 19.43
     },
-    "City2": {
-        "Station7": 137.85,
-        "Station20": 133.1,
-        "Station25": 263.66,
-        "Station31": 113.03
+    "Canmore": {
+        "Banff": 19.43,
+        "Kananaskis": 27.96
     },
-    "Station8": {
-        "City1": 104.02,
-        "Station9": 393.77
+    "Kananaskis": {
+        "Canmore": 27.96,
+        "Calgary": 82.41
     },
-    "Station9": {
-        "Station8": 393.77,
-        "Station10": 8.32
+    "Calgary": {
+        "Kananaskis": 82.41,
+        "Crossfield": 21.03
     },
-    "Station10": {
-        "Station9": 8.32,
-        "Station11": 99.03
+    "Crossfield": {
+        "Calgary": 21.03,
+        "Olds": 30.87
     },
-    "Station11": {
-        "Station10": 99.03,
-        "Station12": 110.2
+    "Olds": {
+        "Crossfield": 30.87,
+        "Bowden": 11.31
     },
-    "Station12": {
-        "Station11": 110.2,
-        "Station13": 113.2
+    "Bowden": {
+        "Olds": 11.31,
+        "Innisfail": 11.03
     },
-    "Station13": {
-        "Station12": 113.2,
-        "Station14": 1.53
+    "Innisfail": {
+        "Bowden": 11.03,
+        "Red Deer County": 17.56
     },
-    "Station14": {
-        "Station13": 1.53,
-        "City4": 171.17
+    "Red Deer County": {
+        "Innisfail": 17.56,
+        "Red Deer": 6.22
     },
-    "City4": {
-        "Station14": 171.17,
-        "Station30": 9.57,
-        "Station45": 91.04,
-        "Station54": 95.26
+    "Red Deer": {
+        "Red Deer County": 6.22,
+        "Edmonton International Airport": 85.49
     },
-    "Station15": {
-        "City1": 81.89,
-        "Station16": 49.4
+    "Edmonton International Airport": {
+        "Red Deer": 85.49,
+        "Leduc": 2.02
     },
-    "Station16": {
-        "Station15": 49.4,
-        "Station17": 16.88
+    "Leduc": {
+        "Edmonton International Airport": 2.02,
+        "Edmonton": 23.38,
+        "Condor": 111.67
     },
-    "Station17": {
-        "Station16": 16.88,
-        "Station18": 44.95
+    "Edmonton": {
+        "Leduc": 23.38,
+        "Edson": 233.75,
+        "Edson Station": 233.75
     },
-    "Station18": {
-        "Station17": 44.95,
-        "Station19": 136.43
+    "Fraser Valley A": {
+        "Vancouver": 137.15,
+        "Lytton": 27.85
     },
-    "Station19": {
-        "Station18": 136.43,
-        "City5": 255.68
+    "Lytton": {
+        "Fraser Valley A": 27.85,
+        "Merritt": 66.52
     },
-    "City5": {
-        "Station19": 255.68,
-        "Station37": 6.57,
-        "Station53": 66.58,
-        "Station59": 105.56
+    "Merritt": {
+        "Lytton": 66.52,
+        "Barriere": 98.59
     },
-    "Station20": {
-        "City2": 133.1,
-        "Station21": 24.78
+    "Barriere": {
+        "Merritt": 98.59,
+        "Little Fort": 20.97
     },
-    "Station21": {
-        "Station20": 24.78,
-        "Station22": 42.96
+    "Little Fort": {
+        "Barriere": 20.97,
+        "Clearwater": 22.28
     },
-    "Station22": {
-        "Station21": 42.96,
-        "Station23": 97.81
+    "Clearwater": {
+        "Little Fort": 22.28,
+        "Thompson-Nicola B": 49.97
     },
-    "Station23": {
-        "Station22": 97.81,
-        "Station24": 39.74
+    "Thompson-Nicola B": {
+        "Clearwater": 49.97,
+        "Blue River": 35.4,
+        "Lake Louise": 262.56
     },
-    "Station24": {
-        "Station23": 39.74,
-        "City3": 269.89
+    "Blue River": {
+        "Thompson-Nicola B": 35.4,
+        "Valemount": 58.29
     },
-    "City3": {
-        "Station24": 269.89,
-        "Station38": 173.26,
-        "Station46": 404.14
+    "Valemount": {
+        "Blue River": 58.29,
+        "Jasper": 96.88
     },
-    "Station25": {
-        "City2": 263.66,
-        "Station26": 8.2
+    "Jasper": {
+        "Valemount": 96.88,
+        "Edson Station": 145.26
     },
-    "Station26": {
-        "Station25": 8.2,
-        "Station27": 456.47
+    "Edson Station": {
+        "Jasper": 145.26,
+        "Edson": 0.0,
+        "Tete Jaune Cache": 238.89,
+        "Edmonton": 233.75
     },
-    "Station27": {
-        "Station26": 456.47,
-        "Station28": 99.68
+    "Edson": {
+        "Edson Station": 0.0,
+        "Edmonton": 233.75
     },
-    "Station28": {
-        "Station27": 99.68,
-        "Station29": 190.5
+    "Cache Creek": {
+        "Vancouver": 185.97,
+        "Clinton": 30.96
     },
-    "Station29": {
-        "Station28": 190.5,
-        "Station30": 41.98
+    "Clinton": {
+        "Cache Creek": 30.96,
+        "100 Mile House": 50.07
     },
-    "Station30": {
-        "Station29": 41.98,
-        "City4": 9.57
+    "100 Mile House": {
+        "Clinton": 50.07,
+        "Williams Lake": 75.1
     },
-    "Station31": {
-        "City2": 113.03,
-        "Station32": 128.9
+    "Williams Lake": {
+        "100 Mile House": 75.1,
+        "Cariboo A": 55.72
     },
-    "Station32": {
-        "Station31": 128.9,
-        "Station33": 97.67
+    "Cariboo A": {
+        "Williams Lake": 55.72,
+        "Hixon": 58.11
     },
-    "Station33": {
-        "Station32": 97.67,
-        "Station34": 282.53
+    "Hixon": {
+        "Cariboo A": 58.11,
+        "PRINCE GEORGE": 40.44
     },
-    "Station34": {
-        "Station33": 282.53,
-        "Station35": 107.63
+    "PRINCE GEORGE": {
+        "Hixon": 40.44,
+        "Prince George": 0.22
     },
-    "Station35": {
-        "Station34": 107.63,
-        "Station36": 116.64
+    "Prince George": {
+        "PRINCE GEORGE": 0.22,
+        "Dome Creek": 131.85
     },
-    "Station36": {
-        "Station35": 116.64,
-        "Station37": 166.84
+    "Dome Creek": {
+        "Prince George": 131.85,
+        "McBride": 86.21
     },
-    "Station37": {
-        "Station36": 166.84,
-        "City5": 6.57
+    "McBride": {
+        "Dome Creek": 86.21,
+        "Tete Jaune Cache": 72.69
     },
-    "Station38": {
-        "City3": 173.26,
-        "Station39": 50.01
+    "Tete Jaune Cache": {
+        "McBride": 72.69,
+        "Edson Station": 238.89
     },
-    "Station39": {
-        "Station38": 50.01,
-        "Station40": 13.23
+    "Rocky Mountain House": {
+        "Condor": 29.83
     },
-    "Station40": {
-        "Station39": 13.23,
-        "Station41": 163.12
-    },
-    "Station41": {
-        "Station40": 163.12,
-        "Station42": 23.74
-    },
-    "Station42": {
-        "Station41": 23.74,
-        "Station43": 56.45
-    },
-    "Station43": {
-        "Station42": 56.45,
-        "Station44": 37.51
-    },
-    "Station44": {
-        "Station43": 37.51,
-        "Station45": 143.3
-    },
-    "Station45": {
-        "Station44": 143.3,
-        "City4": 91.04
-    },
-    "Station46": {
-        "City3": 404.14,
-        "Station47": 53.11
-    },
-    "Station47": {
-        "Station46": 53.11,
-        "Station48": 46.45
-    },
-    "Station48": {
-        "Station47": 46.45,
-        "Station49": 78.21
-    },
-    "Station49": {
-        "Station48": 78.21,
-        "Station50": 34.9
-    },
-    "Station50": {
-        "Station49": 34.9,
-        "Station51": 26.86
-    },
-    "Station51": {
-        "Station50": 26.86,
-        "Station52": 97.5
-    },
-    "Station52": {
-        "Station51": 97.5,
-        "Station53": 177.14
-    },
-    "Station53": {
-        "Station52": 177.14,
-        "City5": 66.58
-    },
-    "Station54": {
-        "City4": 95.26,
-        "Station55": 82.2
-    },
-    "Station55": {
-        "Station54": 82.2,
-        "Station56": 57.46
-    },
-    "Station56": {
-        "Station55": 57.46,
-        "Station57": 2.38
-    },
-    "Station57": {
-        "Station56": 2.38,
-        "Station58": 57.72
-    },
-    "Station58": {
-        "Station57": 57.72,
-        "Station59": 73.77
-    },
-    "Station59": {
-        "Station58": 73.77,
-        "City5": 105.56
+    "Condor": {
+        "Rocky Mountain House": 29.83,
+        "Leduc": 111.67
     }
 }
