@@ -110,6 +110,7 @@
     "Thompson-Nicola B": {
         "Clearwater": 49.97,
         "Blue River": 35.4,
+        "Improvement Disctrict No. 9": 216.97,
         "Lake Louise": 262.56
     },
     "Blue River": {
@@ -178,7 +179,12 @@
         "McBride": 72.69,
         "Edson Station": 238.89
     },
+    "Improvement Disctrict No. 9": {
+        "Thompson-Nicola B": 216.97,
+        "Rocky Mountain House": 150.96
+    },
     "Rocky Mountain House": {
+        "Improvement Disctrict No. 9": 150.96,
         "Condor": 29.83
     },
     "Condor": {

@@ -160,7 +160,7 @@ if __name__ == "__main__":
         "Prince George", "Dome Creek", "McBride", "Tete Jaune Cache", "Edson Station", "Edmonton"
     ]
     additional_paths = [
-        ["Clearwater", "Thompson-Nicola B", "Improvement District No.9",
+        ["Clearwater", "Thompson-Nicola B", "Improvement Disctrict No. 9",
             "Rocky Mountain House", "Condor", "Leduc"],
         ["Thompson-Nicola B", "Lake Louise"]
     ]
