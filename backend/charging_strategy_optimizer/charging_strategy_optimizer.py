@@ -7,14 +7,14 @@ from collections import defaultdict
 
 def load_car(filename, car_type):
     """
-    Loads car parameters from a JSON file.
+    Loads car parameters from a JSON file
     
     Args:
-        filename (str): The path to the JSON file containing car information.
-        car_type (str): The type of the car to load.
+        filename (str): The path to the JSON file containing car information
+        car_type (str): The type of the car to load
 
     Returns:
-        dict: A dictionary containing the car's parameters.
+        dict: dictionary containing the car's parameters
     """
     with open(filename, 'r') as file:
         cars_data = json.load(file)
@@ -26,14 +26,14 @@ def load_car(filename, car_type):
 
 def load_path_planner(segment_distances):
     """
-    Loads segment distances and converts them to charging station data for optimization.
+    Loads segment distances and converts them to charging station data for optimization
     
     Args:
-        segment_distances (list): A list of tuples representing segments of the path.
-                                  Each tuple contains (start, end, distance).
+        segment_distances (list): A list of tuples representing segments of the path
+                                  Each tuple contains (start, end, distance)
 
     Returns:
-        list: A list of dictionaries representing charging stations with distances between them.
+        list: A list of dictionaries representing charging stations with distances between them
     """
     charging_stations = []
     for i, segment in enumerate(segment_distances):
@@ -73,25 +73,27 @@ def optimize_charging_strategy(charging_stations, vehicle_params, charging_curve
     return optimal_strategy, total_time, total_charging_time, total_driving_time
 
 def initialize_dp_table(num_stations, soc_levels):
-    """
-    Initializes the DP table as a list of dictionaries.
-    """
-    dp_table = [{} for _ in range(num_stations)]
+
+    #Initializes the DP table as a list of dictionaries.
+
+    dp_table = []
+    for station_index in range(num_stations):
+        dp_table.append({})
     return dp_table
 
 def calculate_energy_needed(distance, energy_consumption_rate, battery_capacity):
-    """
-    Calculates the energy needed (in SoC percentage) to travel a certain distance.
-    """
+
+    #Calculates the energy needed (in SoC percentage) to travel a certain distance.
+
     energy_needed = (distance / energy_consumption_rate) / battery_capacity * 100  # As a percentage
     # Round to nearest multiple of 10%
     energy_needed = round(energy_needed / 10) * 10
     return energy_needed
 
 def calculate_charging_time(soc_start, soc_end, battery_capacity, charging_curve):
-    """
-    Calculates the charging time from soc_start to soc_end based on the charging curve.
-    """
+    
+    #Calculates the charging time from soc_start to soc_end based on the charging curve.
+    
     soc_start = int(round(soc_start / 10) * 10)
     soc_end = int(round(soc_end / 10) * 10)
     charging_time = 0
@@ -132,7 +134,7 @@ def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, s
 
                 # Only try those charging options that can reach the next station
                 if soc_charged < energy_needed:
-                    continue  # Not enough energy, skip this charging decision
+                    continue  
 
                 soc_next = soc_charged - energy_needed
                 soc_next = int(round(soc_next / 10) * 10)  # Round to nearest multiple of 10%
