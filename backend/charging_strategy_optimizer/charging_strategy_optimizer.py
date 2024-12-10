@@ -6,16 +6,8 @@ import json
 from collections import defaultdict
 
 def load_car(filename, car_type):
-    """
-    Loads car parameters from a JSON file
-    
-    Args:
-        filename (str): The path to the JSON file containing car information
-        car_type (str): The type of the car to load
+    #Loads car parameters from a JSON file
 
-    Returns:
-        dict: dictionary containing the car's parameters
-    """
     with open(filename, 'r') as file:
         cars_data = json.load(file)
     
@@ -25,16 +17,8 @@ def load_car(filename, car_type):
     return cars_data[car_type]
 
 def load_path_planner(segment_distances):
-    """
-    Loads segment distances and converts them to charging station data for optimization
-    
-    Args:
-        segment_distances (list): A list of tuples representing segments of the path
-                                  Each tuple contains (start, end, distance)
+    #Loads segment distances and converts them to charging station data for optimization
 
-    Returns:
-        list: A list of dictionaries representing charging stations with distances between them
-    """
     charging_stations = []
     for i, segment in enumerate(segment_distances):
         start, end, distance = segment
@@ -84,7 +68,6 @@ def initialize_dp_table(num_stations, soc_levels):
 def calculate_energy_needed(distance, energy_consumption_rate, battery_capacity):
 
     #Calculates the energy needed (in SoC percentage) to travel a certain distance.
-
     energy_needed = (distance / energy_consumption_rate) / battery_capacity * 100  # As a percentage
     # Round to nearest multiple of 10%
     energy_needed = round(energy_needed / 10) * 10
@@ -156,7 +139,7 @@ def dynamic_programming_iteration(dp_table, charging_stations, vehicle_params, s
                         'charging_time': t_charge,
                         'driving_time': travel_time
                     }
-                    updated = True  # Mark that we have updated the state
+                    updated = True 
 
         # If no feasible states were found for this stage, force a full charge
         if not updated:
@@ -194,7 +177,7 @@ def reconstruct_optimal_path(dp_table, charging_stations):
 
     print(f"Optimal final SoC found: {optimal_final_soc} with minimum time: {min_time}")
 
-    # Backtrack to reconstruct the path
+    # Reconstruct the path
     optimal_strategy = []
     current_stage_index = final_stage_index
     current_soc = optimal_final_soc
@@ -254,12 +237,12 @@ def traditional_strategy(charging_stations, vehicle_params, charging_curve):
             total_charging_time += charging_time
             strategy.append({
                 'station': current_station['name'],
-                'charge_amount': int(charge_needed),  # Display charge amount as an integer
-                'departure_soc': int(100)  # Display departure SoC as an integer
+                'charge_amount': int(charge_needed), 
+                'departure_soc': int(100) 
             })
-            current_soc = 100  # After charging
+            current_soc = 100 
 
-        # Travel to the next station
+
         current_soc -= energy_needed
         total_time += travel_time
 
@@ -268,19 +251,18 @@ def traditional_strategy(charging_stations, vehicle_params, charging_curve):
 
 
 def calculate_charging_time_traditional(soc_start, soc_end, battery_capacity, charging_curve):
-    """
-    Calculates the charging time for the traditional strategy.
-    """
+
+   # Calculates the charging time for the traditional strategy
+
     charging_time = 0
-    # Ensure soc_start and soc_end are multiples of 10
     soc_start = int(round(soc_start / 10) * 10)
     soc_end = int(round(soc_end / 10) * 10)
 
     for soc in range(soc_start, soc_end, 10):
         power = charging_curve.get(str(soc))
         if power == 0:
-            continue  # Cannot charge beyond 100%
+            continue  
         energy_increment = 0.1 * battery_capacity  # 10% of battery capacity
-        time_increment = energy_increment / power  # Time = Energy / Power
+        time_increment = energy_increment / power  
         charging_time += time_increment
     return charging_time
