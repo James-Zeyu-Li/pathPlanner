@@ -111,6 +111,12 @@ def main():
         f"Total Charging Time (Traditional): {total_charging_time_traditional:.2f} hours")
     print(
         f"Total Driving Time (Traditional): {total_driving_time_traditional:.2f} hours")
+    
+    time_savings = total_time_traditional - total_time_optimal
+    time_savings_percentage = 1 - (total_time_optimal / total_time_traditional)
+    print(f"\nTime Savings Compared to Traditional Fill-Up Strategy: {time_savings:.2f} hours ({time_savings_percentage:.2%} reduction)")
+
+
 
 
 if __name__ == "__main__":
