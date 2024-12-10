@@ -77,3 +77,19 @@ pathPlanner/
         - Station is from the CSV file from `Transport Canada. (2024, October 22). Zero-Emission Vehicle Charging stations` wesbite
     - graph.json: Represents the route connections and distances between nodes.
     - mapData.py: construct the graph from the nodes.json
+
+
+### Run frontend
+
+Prerequisites
+Download and install from Node.js official website.
+Backend Service: Make sure the backend service is running on http://127.0.0.1:5000.
+python3 app.py
+
+1. Navigate to the Frontend Directory: Open a terminal or command prompt and navigate to the frontend folder:
+cd pathPlanner/charging-strategy-frontend
+
+2. Install Dependencies: Install the required npm packages by running:
+   npm install
+3. Start the Frontend: Start the development server with the following command
+   npm start
