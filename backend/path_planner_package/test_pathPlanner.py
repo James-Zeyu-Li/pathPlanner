@@ -52,9 +52,13 @@ def visualize_path(nodes, graph, path, alt_path=None, save_path=None):
     if alt_path:
         highlighted_nodes.update(alt_path)
 
-    # Use actual positions from nodes' "location"
-    pos = {node: (details["location"][0], details["location"][1])
-           for node, details in nodes.items()}
+    # Define node positions
+    pos = {}
+    for node, details in nodes.items():
+        if node in nodes:
+            # Adjust node position here
+            x, y = details["location"]
+            pos[node] = (x, y)
 
     # Define node colors
     colors = []
@@ -90,8 +94,9 @@ def visualize_path(nodes, graph, path, alt_path=None, save_path=None):
                                  k: f"{v} km" for k, v in edge_labels.items()}, font_size=8)
 
     # Highlight start and end nodes
-    plt.scatter(*pos[path[0]], color='green', s=1000, label="Start Node")
-    plt.scatter(*pos[path[-1]], color='red', s=1000, label="End Node")
+    if path:
+        plt.scatter(*pos[path[0]], color='green', s=1000, label="Start Node")
+        plt.scatter(*pos[path[-1]], color='red', s=1000, label="End Node")
 
     # Add legend and save the figure
     plt.legend()
