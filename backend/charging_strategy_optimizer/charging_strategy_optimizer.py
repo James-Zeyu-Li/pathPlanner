@@ -5,6 +5,7 @@
 import json
 from collections import defaultdict
 
+
 def load_car(filename, car_type):
     #Loads car parameters from a JSON file
 
@@ -15,6 +16,7 @@ def load_car(filename, car_type):
         raise ValueError(f"Car type '{car_type}' not found in {filename}")
     
     return cars_data[car_type]
+
 
 def load_path_planner(segment_distances):
     #Loads segment distances and converts them to charging station data for optimization

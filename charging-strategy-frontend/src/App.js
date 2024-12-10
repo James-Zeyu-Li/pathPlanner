@@ -1,94 +1,91 @@
-import React, { useState } from "react";
-import "./styles.css";
+import React, { useState } from 'react';
+import { getShortestPath, optimizeCharging, getTraditionalCharging } from './api';
 
 function App() {
-  const [startCity, setStartCity] = useState("");
-  const [endCity, setEndCity] = useState("");
-  const [carType, setCarType] = useState("");
+  const [startCity, setStartCity] = useState('');
+  const [endCity, setEndCity] = useState('');
+  const [carType, setCarType] = useState('Semi');
   const [result, setResult] = useState(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const payload = {
-      start_city: startCity,
-      end_city: endCity,
-      car_type: carType,
-    };
-
+  const handleShortestPath = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/optimal-route", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      console.log("Requesting shortest path for:", { startCity, endCity });
+      const data = await getShortestPath(startCity, endCity);
+      console.log("Shortest path response:", data);
       setResult(data);
-      setError("");
-    } catch (error) {
-      console.error("Error:", error);
-      setError(`Error: ${error.message}`);
-      setResult(null);
+      setError(null); // Clear any previous errors
+    } catch (err) {
+      console.error("Error fetching shortest path:", err);
+      setError(err);
+      alert(typeof err === 'object' ? JSON.stringify(err, null, 2) : err);
+    }
+  };
+
+  const handleOptimizeCharging = async () => {
+    try {
+      const segmentDistances = result?.segment_distances || [];
+      console.log("Optimizing charging with:", { carType, segmentDistances });
+      const data = await optimizeCharging(carType, segmentDistances);
+      console.log("Optimized charging response:", data);
+      setResult(data);
+      setError(null); // Clear any previous errors
+    } catch (err) {
+      console.error("Error optimizing charging:", err);
+      setError(err);
+      alert(typeof err === 'object' ? JSON.stringify(err, null, 2) : err);
+    }
+  };
+
+  const handleTraditionalCharging = async () => {
+    try {
+      const segmentDistances = result?.segment_distances || [];
+      console.log("Traditional charging with:", { carType, segmentDistances });
+      const data = await getTraditionalCharging(carType, segmentDistances);
+      console.log("Traditional charging response:", data);
+      setResult(data);
+      setError(null); // Clear any previous errors
+    } catch (err) {
+      console.error("Error with traditional charging:", err);
+      setError(err);
+      alert(typeof err === 'object' ? JSON.stringify(err, null, 2) : err);
     }
   };
 
   return (
-    <div className="container">
-      <h1>Path Planner</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="startCity">Start City:</label>
-          <input
-            type="text"
-            id="startCity"
-            value={startCity}
-            onChange={(e) => setStartCity(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="endCity">End City:</label>
-          <input
-            type="text"
-            id="endCity"
-            value={endCity}
-            onChange={(e) => setEndCity(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group">
-          <label htmlFor="carType">Car Type:</label>
-          <input
-            type="text"
-            id="carType"
-            value={carType}
-            onChange={(e) => setCarType(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Calculate Route</button>
-      </form>
-      <div className="results">
-        <h2>Results</h2>
-        {error && <p className="error">{error}</p>}
-        {result && (
-          <div>
-            <p><strong>Path:</strong> {result.path.join(" → ")}</p>
-            <p><strong>Total Distance:</strong> {result.total_distance} km</p>
-            <p><strong>Total Time:</strong> {result.total_time.toFixed(2)} hours</p>
-            <p><strong>Charging Time:</strong> {result.charging_time.toFixed(2)} hours</p>
-            <p><strong>Driving Time:</strong> {result.driving_time.toFixed(2)} hours</p>
-          </div>
-        )}
+    <div>
+      <h1>Path Planner & Charging Strategy</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Start City"
+          value={startCity}
+          onChange={(e) => setStartCity(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="End City"
+          value={endCity}
+          onChange={(e) => setEndCity(e.target.value)}
+        />
+        <button onClick={handleShortestPath}>Find Shortest Path</button>
       </div>
+
+      {error && (
+        <div style={{ color: 'red', marginTop: '20px' }}>
+          <h3>Error:</h3>
+          <pre>{JSON.stringify(error, null, 2)}</pre>
+        </div>
+      )}
+
+      {result && (
+        <div>
+          <h2>Result</h2>
+          <pre>{JSON.stringify(result, null, 2)}</pre>
+          <button onClick={handleOptimizeCharging}>Optimize Charging</button>
+          <button onClick={handleTraditionalCharging}>Traditional Charging</button>
+        </div>
+      )}
     </div>
   );
 }
